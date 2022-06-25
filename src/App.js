@@ -8,17 +8,13 @@ import { analytics } from "./firebase";
 import {logEvent} from "firebase/analytics";
 
 
-
-
 import Header from "./components/Header.js";
 import Game from "./components/Game.js";
-import Footer from "./components/Footer.js";
 import HelpMenu from "./components/ui_components/HelpMenu.js";
 
 import { getHydranoidSpungus, getSprondlemonusTrobian } from './levelData';
 
 import { checkGameLost, checkGameWon } from './gameOver';
-import { unstable_renderSubtreeIntoContainer } from 'react-dom';
 
 export const AppContext = createContext();
 
@@ -56,18 +52,15 @@ function App() {
   const [history, setHistory] = useState({}); // { "daysPlayed": [0,1,2,3,4,8,9,34,35], "results" : { 0:{"correctLetters":[], "wrongLetters"[]},  1:{"correctLetters":[], "wrongLetters"[]}, ...  } }  
 
 
-  
-
-
   // CONSTANTS
   const GAME_TITLE = "Daydreams";
   const GAME_URL = "http://daydreams.ai";
   const DEMO_MODE = false;
-  const BUILD_MODE = "BUILD"; // BUILD / PROD
-  const VERSION_CODE = "1.0.8";
+  const BUILD_MODE = "DEMO"; // DEMO / RELEASE
+  const VERSION_CODE = "1.0.9";
 
-  const INTERVAL = 1; // 0 = day, 1 = minute
-  const KEY_DELAY_MS = 150;
+  const INTERVAL = 1; // 0 = day, 1 = minute, 2 = hour
+  const KEY_DELAY_MS = 0;
 
 
   // EVENTS
@@ -117,7 +110,7 @@ function App() {
   }
 
   function newDay () {
-    // and the previous level hasnt been completed yet
+    // and the previous level hasn't been completed yet
     const saveDataPreviousCompletedLevel = storageLoad("SAVE_COMPLETED_LEVEL");
     if (saveDataPreviousCompletedLevel != null && parseInt(saveDataPreviousCompletedLevel) === 0) {
 
@@ -138,25 +131,6 @@ function App() {
 
 
 
-  console.log(">>>>>>>>>>> todo: once you win / lose, add end screen");
-  console.log(">>>>>>>>>>> todo: add [?] help guide with example carousel"); // should explain streak / superstreak
-  console.log(">>>>>>>>>>> todo: better lives UI");
-  console.log(">>>>>>>>>>> todo: get images onto AWS");
-  console.log(">>>>>>>>>>> todo: add button to load demo showoff mode");
-
-  console.log(">>>>>>>>>>> todo: test to see if the daily system works:  [daily image], [building streak / super streak], [skipping a day]");
-  console.log(">>>>>>>>>>> todo: better streak icons UI");
-  console.log(">>>>>>>>>>> todo: add proper footer stuff");
-  console.log(">>>>>>>>>>> todo: do a test deploy");
-  console.log(">>>>>>>>>>> todo: test mobile share button copy (android / ios)");
-  
-  console.log(">>>>>>>>>>> todo: [EXTERNAL] --- ensure ergonomic keyboard/scaling on mobile");
-  console.log(">>>>>>>>>>> todo: [EXTERNAL] --- when users rotate their phone landscape, they should be able to zoom into the whole image");
-  console.log(">>>>>>>>>>> todo: [EXTERNAL] --- fix letters moving on new line");
-  console.log(">>>>>>>>>>> todo: [EXTERNAL] --- all images should preload e.g. share button icon pops in");
-  console.log(">>>>>>>>>>> todo: [EXTERNAL] --- ensure its all web compliant/security checks");
-
-
 
 
 
@@ -171,6 +145,8 @@ function App() {
     todayDay = new Date(todayTimestamp.getFullYear(), todayTimestamp.getMonth(), todayTimestamp.getDate()); // day refresh
   if (INTERVAL === 1)
     todayDay = new Date(todayTimestamp.getFullYear(), todayTimestamp.getMonth(), todayTimestamp.getDate(), todayTimestamp.getHours(), todayTimestamp.getMinutes());   // minutes refresh
+  if (INTERVAL === 2)
+    todayDay = new Date(todayTimestamp.getFullYear(), todayTimestamp.getMonth(), todayTimestamp.getDate(), todayTimestamp.getHours());   // hours refresh
 
 
 
@@ -191,7 +167,7 @@ function App() {
     getHydranoidSpungus(todayDay, DEMO_MODE, INTERVAL).then((hybronuSprillabrib) => {
       setLevelIndex(hybronuSprillabrib);
       console.log("image index: " + hybronuSprillabrib);
-      getSprondlemonusTrobian(hybronuSprillabrib).then((dailyLevelData) => {
+      getSprondlemonusTrobian(hybronuSprillabrib, BUILD_MODE).then((dailyLevelData) => {
         setGameState("RUNNING");
         setLevelData(dailyLevelData);
       }).then(() => {
@@ -210,6 +186,8 @@ function App() {
           previousPageOpenDay = new Date(previousPageOpenDate.getFullYear(), previousPageOpenDate.getMonth(), previousPageOpenDate.getDate()); // day previous
         if (INTERVAL === 1)
           previousPageOpenDay = new Date(previousPageOpenDate.getFullYear(), previousPageOpenDate.getMonth(), previousPageOpenDate.getDate(), previousPageOpenDate.getHours(), previousPageOpenDate.getMinutes()); // minute previous
+        if (INTERVAL === 2)
+          previousPageOpenDay = new Date(previousPageOpenDate.getFullYear(), previousPageOpenDate.getMonth(), previousPageOpenDate.getDate(), previousPageOpenDate.getHours()); // hour previous
 
 
         let oneDayAfterPreviousPageOpenDay = new Date();
@@ -218,6 +196,8 @@ function App() {
           oneDayAfterPreviousPageOpenDay = new Date(previousPageOpenDay.getFullYear(), previousPageOpenDay.getMonth(), previousPageOpenDay.getDate() + 1);
         if (INTERVAL === 1)
           oneDayAfterPreviousPageOpenDay = new Date(previousPageOpenDay.getFullYear(), previousPageOpenDay.getMonth(), previousPageOpenDay.getDate(), previousPageOpenDay.getHours(), previousPageOpenDay.getMinutes() + 1);
+        if (INTERVAL === 2)
+          oneDayAfterPreviousPageOpenDay = new Date(previousPageOpenDay.getFullYear(), previousPageOpenDay.getMonth(), previousPageOpenDay.getDate(), previousPageOpenDay.getHours() +1);
 
 
         let newDayArrived = previousPageOpenDay < todayDay;
@@ -506,5 +486,4 @@ function App() {
     </div>);
 }
 
-//<Footer />
 export default App;

@@ -9,37 +9,38 @@ function Lives() {
     const appContext = useContext(AppContext);
     const { wrongLetters, gameState, livesCompletedPulse, setLivesCompletedPulse } = appContext;
 
-
     let life1ClassName = "lives-life";
     let life2ClassName = "lives-life";
     let life3ClassName = "lives-life";
-
 
     const hearts = 3 - wrongLetters.length;
 
 
     useEffect(() => {
         const isGameOver = gameState === "GAME_WON" || gameState === "GAME_LOST";
+
         if (isGameOver) {
+
+            console.log("PULSE   " + isGameOver);
 
             if (hearts > 0)
             setTimeout(() => {
                 console.log("lives = " + livesCompletedPulse);
                 setLivesCompletedPulse([1, 0, 0]);
-            }, 500);
+            }, 1000);
 
 
             if (hearts > 1)
             setTimeout(() => {
                 console.log("lives = " + livesCompletedPulse);
                 setLivesCompletedPulse([1, 1, 0 ]);
-            }, 800);
+            }, 1300);
 
             if (hearts > 2)
             setTimeout(() => {
                 console.log("lives = " + livesCompletedPulse);
                 setLivesCompletedPulse([1, 1,1]);
-            }, 1100);
+            }, 1500);
 
         }
 
@@ -71,6 +72,5 @@ function Lives() {
     </div>);
 }
 
-//   <Life state="EMPTY"/>
 
 export default Lives;

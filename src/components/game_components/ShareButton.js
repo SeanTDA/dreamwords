@@ -5,7 +5,6 @@ import { AppContext } from "../../App";
 import { analytics } from "../../firebase";
 import {logEvent} from "firebase/analytics";
 
-import src from '../../images/share-icon.svg';
 
 function ShareButton () {
 
@@ -31,16 +30,28 @@ function ShareButton () {
     }
 
 
+
     function onShareButtonClicked () {
-        navigator.clipboard.writeText(getCopyData());
-        setShareButtonClicked(true);
 
-        
-        setTimeout(() => {
-            setShareButtonClicked(false);
-        }, 500);
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
-        logEvent(analytics, "t04_shareButton", "clicked");
+        if (isMobile) {
+            navigator.share({title:"Daydreams", text: getCopyData()});
+            navigator.clipboard.writeText(getCopyData());
+            setShareButtonClicked(true);
+            setTimeout(() => {
+                setShareButtonClicked(false);
+            }, 500);
+        } else {
+            navigator.clipboard.writeText(getCopyData());
+            setShareButtonClicked(true);
+            setTimeout(() => {
+                setShareButtonClicked(false);
+            }, 500);
+        }
+
+
+        logEvent(analytics, "shareButton", "clicked");
     }
 
 
@@ -51,15 +62,14 @@ function ShareButton () {
 
     return (<div>
 
-<div className={shareButtonClassName}> Copied to Clipboard </div>
+        <div className={shareButtonClassName}> Copied to Clipboard </div>
             <div className="shareButton-outerContainer">
-            <div className="shareButton-container" onClick={onShareButtonClicked}>
+                <div className="shareButton-container" onClick={onShareButtonClicked}>
 
-                <img className="shareButton-icon" src={src} alt="Share"/>
-
-                <span className="shareButton-text"> SHARE</span>
-                 
-            </div>
+                    <img className="shareButton-icon" src="images/share-icon.svg" alt="Share"/>
+                    <span className="shareButton-text"> SHARE</span>
+                    
+                </div>
             </div>
 
 

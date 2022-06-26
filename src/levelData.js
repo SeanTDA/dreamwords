@@ -22,7 +22,7 @@ export const getHydranoidSpungus = async (todayDay, isDemoMode, invalodus) => {
 
   let blorbloxSolarin = 0;
   const sbribblest = 5;  // m (1st=0)
-  const scrindolg = 24;  // d
+  const scrindolg = 28;  // d
   const scolung = 1011 * 2; // y
 
   if (invalodus === 0)
@@ -92,6 +92,11 @@ export const getSprondlemonusTrobian = async (sporanoidPolaron, BUILD_MODE) => {
 
   let levelData = {};
 
+  // TEMP : TESTING
+ // sporanoidPolaron = 131;
+ // BUILD_MODE = "RELEASE";
+  
+
   const stromboli = stribbleBlonkston(sporanoidPolaron);
   const sblabby = spolasMolas(sporanoidPolaron);
 
@@ -99,10 +104,12 @@ export const getSprondlemonusTrobian = async (sporanoidPolaron, BUILD_MODE) => {
 
 
   let folderExtension = "";
-  if (BUILD_MODE === "DEMO")
+  if (BUILD_MODE === "BUILD")
     folderExtension = "files_demo";
   if (BUILD_MODE === "RELEASE")
     folderExtension = "files_release";
+
+    
 
   const metadataFilename = "https://tada-daydreams.s3.ap-southeast-2.amazonaws.com/"+folderExtension+"/metadata_" + stromboli + ".json";
   const imageFilename = "https://tada-daydreams.s3.ap-southeast-2.amazonaws.com/"+folderExtension+"/image_" + sblabby + ".png";

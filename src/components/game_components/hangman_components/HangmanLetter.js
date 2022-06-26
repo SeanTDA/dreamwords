@@ -31,10 +31,16 @@ function HangmanLetter({ letter }) {
     }
 
 
+    let letterToShow = "_";
+
+    if (isLetterRevealed || isLetterSpecial || isGameOver)
+        letterToShow = letter.toUpperCase();
+
+
     return (
         <span className={className}>
             {
-                (isLetterRevealed || isLetterSpecial || isGameOver) ? letter.toUpperCase() : "_"
+                letterToShow
             }
         </span>
     );

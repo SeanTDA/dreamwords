@@ -67,7 +67,7 @@ function ShareButton () {
 
     return (<div>
 
-        <div className={shareButtonClassName}> 📋 COPIED </div>
+        <div className={shareButtonClassName}> + COPIED </div>
             <div className="shareButton-outerContainer">
                 <div className="shareButton-container" onClick={onShareButtonClicked}>
 

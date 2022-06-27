@@ -8,7 +8,6 @@ html, body, #root {
 
 
 body {
-  background-color: black;
   margin: 0;
   padding: 0;
   overflow-y: hidden;
@@ -41,7 +40,9 @@ body {
 
  --var-font-size-lives: 35px;
 
+ background-color: var( --var-color-background);
 }
+
 
 
 .App {
@@ -71,6 +72,9 @@ body {
 
   
 }
+
+
+
 
 
 /* HEADER */
@@ -190,6 +194,15 @@ body {
   pointer-events: all;
 }
 
+.helpMenu-container-outer {
+  animation: helpMenu-container-outer-appear 2;
+}
+
+@keyframes helpMenu-container-outer-appear {
+  0% { transform:  translate(0px, -100px); }
+  100% { transform:  translate(0px, 0px); }
+}
+
 
 .helpMenu-container {
   position: absolute;
@@ -197,16 +210,18 @@ body {
   top: 50%;
   transform: translate(-50%, -50%);
 
-  width: 75%;
-  height: 75%;
+  width: 100%;
+  height: 100%;
   margin: auto;
 
   background-color: #201e1f;
+  
+  font-family: 'Zen Kaku Gothic Antique', sans-serif; 
 
-  border-color: rgb(255, 255, 255);
-  border-width: 2px;
-  border-style: solid;
 }
+
+
+
 
 
 
@@ -216,12 +231,13 @@ body {
   overflow: auto;
   max-height: 100%;
   width: 100%;
+  letter-spacing: 0.5px;
 }
 
 .helpMenu-header {
   width: 100%;
-  height: 40px;
-  padding-top:10px;
+  height: 35px;
+  padding-top:15px;
   white-space: nowrap;
 
   
@@ -254,18 +270,16 @@ body {
 }
 
 .helpMenu-guide {
-  padding-top:10px;
   font-size: 20px;
   text-align: center;
   margin-left: 10%;
   margin-right: 10%;
-  margin-top: 30px;
+  margin-top: 20px;
 
-  font-family: 'Zen Kaku Gothic Antique', sans-serif; 
   
   font-weight: 400;
   font-size: 15px;
-  line-height: 20px;
+  line-height: 22px;
   padding-bottom:30px;
 
 }
@@ -306,6 +320,7 @@ body {
   flex-direction: column;
   padding-bottom:30px;
 }
+
 
 .image-clue-subtitle {
   text-align: center;
@@ -366,17 +381,17 @@ a.helpMenu-link-twitter {
 
 
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 0px;
 }
 ::-webkit-scrollbar-track {
   background: #00000000; 
 }
 ::-webkit-scrollbar-thumb {
-  background: #888;
+  background: rgba(136, 136, 136, 0);
   border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #555; 
+  background: rgba(85, 85, 85, 0); 
 }
 
 
@@ -390,13 +405,13 @@ a.helpMenu-link-twitter {
 
 .helpMenu-closeButton-container {
   position:absolute;
-  left: 87.5%;
-  top:12.5%;
+  left: 100%;
+  top:0%;
 
   transform: translate(-100%, 0);
-
-
  }
+
+
 
 .helpMenu-closeButton {
 
@@ -421,7 +436,11 @@ a.helpMenu-link-twitter {
   opacity:50%;
   transition: opacity 500ms;
   pointer-events: all;
+  transform: scale(1.25);
 }
+
+
+
 
 .helpMenu-closeButton:hover {
   opacity:100%;
@@ -659,6 +678,19 @@ LIFE BAR
     -webkit-filter: sepia(0%) brightness(100%);
     filter: sepia(0%) brightness(100%);
   }
+}
+
+
+
+
+.lives-hurt-1 {
+  animation: shake-1 3 0.15s;
+}
+.lives-hurt-2 {
+  animation: shake-2 3 0.15s;
+}
+.lives-hurt-3 {
+  animation: shake-3 3 0.15s; 
 }
 
 
@@ -1154,3 +1186,28 @@ KEYBOARD
   }
 }
 
+
+/*
+HELPER
+*/
+
+@keyframes shake-1 {
+  0% { transform:  translate(0px, 0px); }
+  25% { transform:  translate(-8px, 0px); }
+  75% { transform:  translate(8px, 0px); }
+  100% { transform:  translate(0px, 0px); }
+}
+
+@keyframes shake-2 {
+  0% { transform:  translate(0px, 0px); }
+  25% { transform:  translate(-9px, 0px); }
+  75% { transform:  translate(9px, 0px); }
+  100% { transform:  translate(0px, 0px); }
+}
+
+@keyframes shake-3 {
+  0% { transform:  translate(0px, 0px); }
+  25% { transform:  translate(-10px, 0px); }
+  75% { transform:  translate(10px, 0px); }
+  100% { transform:  translate(0px, 0px); }
+}

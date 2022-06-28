@@ -62,7 +62,7 @@ function HelpMenu() {
                             <br />
                             <br />Join the Discord Community<br />
 
-                            <a href="https://discord.gg/aK6sDGrmgv" target="_blank" rel="noopener noreferrer" className = "helpMenu-discordButton" >
+                            <a href="https://discord.gg/jZZhcVXQtF" target="_blank" rel="noopener noreferrer" className = "helpMenu-discordButton" >
                                 <img src="images/discord-icon.svg" alt="Discord"/>
                             </a>
 

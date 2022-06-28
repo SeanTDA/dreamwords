@@ -572,7 +572,7 @@ a.footer-hyperlink:hover {
 .aliveStreak {
   top: 0px;
   text-align: left;
-  color: var(--var-color-correct-green-02);
+  color: white; /* var(--var-color-correct-green-02);*/
   display: inline;
   vertical-align: middle;
 }

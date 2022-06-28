@@ -148,7 +148,7 @@ body {
   position:absolute;
   left: 100%;
   top:-5px;
-  transform: translate(-100%, 0) scale(1.2);
+  transform: translate(-100%, 0) scale(1);
   
   padding-right:10px;
 }

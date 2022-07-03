@@ -12,7 +12,7 @@ import useCollapse from 'react-collapsed';
 function HelpMenu() {
 
     const appContext = useContext(AppContext);
-    const { setHelpMenuShown, helpMenuShown, versionCode, levelIndex } = appContext;
+    const { setHelpMenuShown, helpMenuShown, versionCode, levelIndex, history } = appContext;
     const {getCollapseProps, getToggleProps, isExpanded} = useCollapse();
 
 
@@ -98,6 +98,11 @@ function HelpMenu() {
                                 <b>Web Development</b>
                                 <br /> Andrew Morton <br />
                                 <br />
+
+
+                                {JSON.stringify(history)}
+
+
                                 </div>
                             </div>
                             </div>

@@ -98,11 +98,6 @@ function HelpMenu() {
                                 <b>Web Development</b>
                                 <br /> Andrew Morton <br />
                                 <br />
-
-
-                                {JSON.stringify(history)}
-
-
                                 </div>
                             </div>
                             </div>

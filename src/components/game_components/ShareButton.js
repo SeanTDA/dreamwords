@@ -5,13 +5,18 @@ import { AppContext } from "../../App";
 import { analytics } from "../../firebase";
 import {logEvent} from "firebase/analytics";
 
+import {getHighestStreak, getHighestSuperStreak} from "../../historyHelper";
+
 
 function ShareButton () {
 
     const appContext = useContext(AppContext);
-    const { levelIndex, wrongLetters, superStreak, streak, shareButtonClicked, setShareButtonClicked         } = appContext;
+    const { levelIndex, wrongLetters, superStreak, streak, shareButtonClicked, setShareButtonClicked, history  } = appContext;
 
     const hearts = 3 - wrongLetters.length;
+
+
+
 
     function wordOrderValueToEmoji (wordOrderValue) {
         return ["1️⃣","2️⃣","3️⃣","4️⃣","5️⃣","6️⃣","7️⃣","8️⃣","9️⃣"][wordOrderValue-1];
@@ -26,6 +31,10 @@ function ShareButton () {
 
 
     function getCopyData () {
+        
+        const highestStreak = getHighestStreak(history);
+        const highestSuperStreak = getHighestSuperStreak(history);
+
         let copyData = "";
         copyData += "Daydreams.ai ";
         copyData += "#" + (levelIndex+1);
@@ -33,7 +42,7 @@ function ShareButton () {
         for (let i = 0; i < 3; i++)
             copyData += hearts > i ? "❤️" : "🖤";
         copyData += "\n";
-        copyData += `🔥x${streak} 🏆x${superStreak}`
+        copyData += `🔥x${streak} [${highestStreak}]\n🏆x${superStreak} [${highestSuperStreak}]`
 
 
         return copyData;

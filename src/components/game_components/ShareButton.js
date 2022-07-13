@@ -37,7 +37,7 @@ function ShareButton () {
 
 
         if (streak > highestStreak) highestStreak = streak;
-        if (streak > highestSuperStreak) highestSuperStreak = streak;
+        if (superStreak > highestSuperStreak) highestSuperStreak = superStreak;
 
         let copyData = "";
         copyData += "Daydreams.ai ";

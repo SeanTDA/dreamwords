@@ -454,12 +454,16 @@ function App() {
 
     var playedBefore = Object.keys(history).length !== 0;
     if (playedBefore) {
-      const saveDataNewUpdateNotification = storageLoad("SAVE_UPDATE_NOTIFICATION_NEW_"+VERSION_CODE +"_003");
-      console.log("Previous notification: " + saveDataNewUpdateNotification);
-      if (saveDataNewUpdateNotification === null || saveDataNewUpdateNotification === undefined) {
-        setUpdateNotificationShown(1);
+      const isGameOver = gameState === "GAME_WON" || gameState === "GAME_LOST";
+
+      if (!isGameOver) {
+        const saveDataNewUpdateNotification = storageLoad("SAVE_UPDATE_NOTIFICATION_NEW_"+VERSION_CODE +"_004");
+        console.log("Previous notification: " + saveDataNewUpdateNotification);
+        if (saveDataNewUpdateNotification === null || saveDataNewUpdateNotification === undefined) {
+          setUpdateNotificationShown(1);
+        }
+        setNewUpdateNotification(0);
       }
-      setNewUpdateNotification(0);
     }
     
 
@@ -540,7 +544,7 @@ function App() {
 
   useEffect(() => {
     if (newUpdateNotification === -1) return;
-    storageSave("SAVE_UPDATE_NOTIFICATION_NEW_"+VERSION_CODE +"_003", 0);
+    storageSave("SAVE_UPDATE_NOTIFICATION_NEW_"+VERSION_CODE +"_004", 0);
   }, [newUpdateNotification]);
 
   return (

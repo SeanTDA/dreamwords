@@ -451,7 +451,9 @@ function App() {
 
     // If I have played before, and no notification shown for this version exists, show the notification
     var playedBefore = Object.keys(history).length !== 0;
-    const saveDataNewUpdateNotification = storageLoad("SAVE_UPDATE_NOTIFICATION_NEW_"+VERSION_CODE +"_001");
+    console.log("Played before? " + playedBefore);
+    const saveDataNewUpdateNotification = storageLoad("SAVE_UPDATE_NOTIFICATION_NEW_"+VERSION_CODE +"_002");
+    console.log("Previous notification: " + saveDataNewUpdateNotification);
     if (saveDataNewUpdateNotification === null || saveDataNewUpdateNotification === undefined) {
       if (playedBefore) {
         setUpdateNotificationShown(1);
@@ -536,7 +538,7 @@ function App() {
 
   useEffect(() => {
     if (newUpdateNotification === -1) return;
-    storageSave("SAVE_UPDATE_NOTIFICATION_NEW_"+VERSION_CODE +"_001", 0);
+    storageSave("SAVE_UPDATE_NOTIFICATION_NEW_"+VERSION_CODE +"_002", 0);
   }, [newUpdateNotification]);
 
   return (

@@ -1,5 +1,5 @@
 
-    //onSelectSkin("KEYBOARD", "STRIPE");
+
 import './App.css';
 import React, { createContext, useEffect, useState } from "react";
 
@@ -12,14 +12,14 @@ import {logEvent} from "firebase/analytics";
 import Header from "./components/Header.js";
 import Game from "./components/Game.js";
 import HelpMenu from "./components/ui_components/HelpMenu.js";
+import Medals from "./components/ui_components/Medals.js";
 
 import { getHydranoidSpungus, getSprondlemonusTrobian } from './levelData';
 
 import { checkGameLost, checkGameWon } from './gameOver';
+import UpdateNotification from './components/ui_components/UpdateNotification';
 
 export const AppContext = createContext();
-
-
 
 
 
@@ -53,10 +53,13 @@ function App() {
   const [livesCompletedPulse, setLivesCompletedPulse] = useState([-1, -1, -1]);
   const [shareButtonClicked, setShareButtonClicked] = useState(false);
   const [helpMenuShown, setHelpMenuShown] = useState(-1);
+  const [medalsShown, setMedalsShown] = useState(0);
+  const [newUpdateNotification, setNewUpdateNotification] = useState(-1);
+  const [updateNotificationShown, setUpdateNotificationShown] = useState(0);
+
+  
   const [history, setHistory] = useState({}); // { "daysPlayed": [0,1,2,3,4,8,9,34,35], "results" : { 0:{"correctLetters":[], "wrongLetters"[]},  1:{"correctLetters":[], "wrongLetters"[]}, ...  } }  
-  const [selectedSkin, setSelectedSkin] = useState({
-    keyboardCap: "NONE"
-  });
+  const [selectedKeycap, setSelectedKeycap] = useState("NONE");
 
 
 
@@ -65,7 +68,7 @@ function App() {
   const GAME_URL = "https://daydreams.ai";
   const DEMO_MODE = false;
   const BUILD_MODE = "RELEASE"; // BUILD / RELEASE
-  const VERSION_CODE = "1.0.6";
+  const VERSION_CODE = "1.1.0";
 
   const INTERVAL = 0; // 0d1m2h
   const KEY_DELAY_MS = 0;
@@ -99,14 +102,9 @@ function App() {
   }
 
 
-  const onSelectSkin = (skinType, newSkin) => {
-
-    let newSelectedSkin = selectedSkin;
-    if (skinType === "KEYBOARD")
-      newSelectedSkin.keyboardCap = newSkin;
-
-    setSelectedSkin(newSelectedSkin);
-    storageSave("SAVE_SELECTED_SKIN", JSON.stringify(selectedSkin));
+  const onSelectKeycap = (_newKeycap) => {
+    setSelectedKeycap(_newKeycap);
+    storageSave("SAVE_SELECTED_KEYCAP", _newKeycap);
   }
 
 
@@ -275,11 +273,13 @@ function App() {
         if (saveDataHistory !== null && saveDataHistory !== undefined)
           setHistory(JSON.parse(saveDataHistory));
 
-        const saveDataSelectedSkin = storageLoad("SAVE_SELECTED_SKIN");
-        if (saveDataSelectedSkin !== null && saveDataSelectedSkin !== undefined)
-          setSelectedSkin(JSON.parse(saveDataSelectedSkin));
+        const saveDataSelectedKeycap = storageLoad("SAVE_SELECTED_KEYCAP");
+        if (saveDataSelectedKeycap !== null && saveDataSelectedKeycap !== undefined)
+          setSelectedKeycap(saveDataSelectedKeycap);
 
 
+
+        
 
 
         // Display the help menu for first time players
@@ -448,7 +448,21 @@ function App() {
 
   // History Updated
   useEffect(() => {
-   if (Object.keys(history).length === 0) return;
+
+    // If I have played before, and no notification shown for this version exists, show the notification
+    var playedBefore = Object.keys(history).length !== 0;
+    const saveDataNewUpdateNotification = storageLoad("SAVE_UPDATE_NOTIFICATION_NEW_"+VERSION_CODE);
+    if (saveDataNewUpdateNotification === null || saveDataNewUpdateNotification === undefined) {
+      if (playedBefore) {
+        setUpdateNotificationShown(1);
+      }
+    }
+    setNewUpdateNotification(0);
+
+
+
+
+   if (!playedBefore) return;
 
 
 
@@ -515,8 +529,17 @@ function App() {
     storageSave("SAVE_HISTORY", JSON.stringify(history));
   }, [history]);
 
+  useEffect(() => {
+    storageSave("SAVE_UPDATE_NOTIFICATION_SHOWN_"+VERSION_CODE, 0);
+    console.log("SAVING: " + "SAVE_UPDATE_NOTIFICATION_SHOWN_"+VERSION_CODE + " to 0");
+    console.log("update notification set to --- " + updateNotificationShown);
+  }, [updateNotificationShown]);
 
-  
+
+  useEffect(() => {
+    if (newUpdateNotification === -1) return;
+    storageSave("SAVE_UPDATE_NOTIFICATION_NEW_"+VERSION_CODE, 0);
+  }, [newUpdateNotification]);
 
   return (
     <div className="App">
@@ -543,17 +566,33 @@ function App() {
         livesCompletedPulse, setLivesCompletedPulse,
         shareButtonClicked, setShareButtonClicked,
         helpMenuShown, setHelpMenuShown,
+        medalsShown, setMedalsShown,
+        newUpdateNotification, setNewUpdateNotification,
+        updateNotificationShown, setUpdateNotificationShown,
         history, setHistory,
-        selectedSkin, setSelectedSkin,
-        onSelectSkin
+        selectedKeycap, setSelectedKeycap,
+        onSelectKeycap
       }}>
 
         <Header />
         <Game />
         <HelpMenu />
+        <Medals />
+        
+        <UpdateNotification/>
       </AppContext.Provider>
 
     </div>);
 }
 
 export default App;
+
+
+
+/*
+
+  TODO:
+  - More keycap skins
+  - Prompt players when they unlock a new skin
+
+*/

@@ -4,12 +4,16 @@ import { AppContext } from "../App";
 
 
 import HelpButton from "./header_components/HelpButton.js";
+import MedalsButton from "./header_components/MedalsButton.js";
+import {getNumDaysPlayed} from "../historyHelper.js";
 
 
 function Header() {
 
     const appContext = useContext(AppContext);
-    const { gameTitle } = appContext;
+    const { gameTitle, history } = appContext;
+
+    var numDaysPlayed = getNumDaysPlayed(history);
 
 
     return (
@@ -34,9 +38,12 @@ function Header() {
                 </div>
 
                 <div className="header-right">
-                    <a href="https://www.instagram.com/daydreams.ai" target="_blank" rel="noopener noreferrer" className = "header-instagramButton" >
-                        <img src="images/instagram-icon.svg" alt="Instagram"/>
-                    </a>
+                     <MedalsButton/>
+                
+                    
+
+
+
                 </div>
                 
 
@@ -44,5 +51,6 @@ function Header() {
             </div>
         </div>);
 }
+
 
 export default Header;

@@ -3,10 +3,12 @@
 import React, { useContext } from 'react';
 import { AppContext } from "../../App.js";
 
+
 import Slider from "react-slick";
 import ImageCrop from '../game_components/imageCrop';
 
 import useCollapse from 'react-collapsed';
+
 
 
 function HelpMenu() {
@@ -39,15 +41,16 @@ function HelpMenu() {
                 <div className="helpMenu-container-outer">
                     <div className="helpMenu-container">
                         <div className="helpMenu-contents">
-                        <div className="helpMenu-header">
-                            <div className="helpMenu-center"> HOW TO PLAY </div>
-                            <div className="helpMenu-right"></div>
+                        <div className="subMenu-header">
+                            <div className="subMenu-center"> HOW TO PLAY </div>
+                            <div className="subMenu-right"></div>
                         </div>
                         <div className="helpMenu-guide"> Guess each letter from the set of <b>Daydreams.</b>
                             <br />
-                            <br /> Boost your 🔥 daily streak by winning each day. <br />
-                            <br />Rack up a 🏆 super streak by surviving with all ❤️❤️❤️ hearts intact. <br />
-                            <br />
+                            <br /> Boost your 🔥 daily streak with daily wins.
+                            <br />Rack up a 🏆 super streak by surviving with all ❤️❤️❤️ hearts intact.
+                            <br />Unlock new ⭐ keycaps by increasing your wins and highest streak.
+                            <br /><br />
                             <b>New Daydreams will appear every day!</b>
                             <br />
                             <br />
@@ -94,17 +97,31 @@ function HelpMenu() {
                                 </a>
                                 <br />
                                 <br />
-                                <b>Web Development</b>
+                                <b>Website Bug Fixes</b>
                                 <br /> Andrew Morton <br />
                                 <br />
                                 </div>
                             </div>
                             </div>
                             <br />
-                            <br />Join the Discord Community<br />
-                            <a href="https://discord.gg/jZZhcVXQtF" target="_blank" rel="noopener noreferrer" className = "helpMenu-discordButton" >
-                                <img src="images/discord-icon.svg" alt="Discord"/>
-                            </a>
+                            Join the Discord Community
+                            <br />
+
+                            <table className="helpMenu-socials">
+                                <tr>
+                                    <th>
+                                        <a href="https://discord.gg/jZZhcVXQtF" target="_blank" rel="noopener noreferrer" className = "helpMenu-discordButton" >
+                                            <img src="images/discord-icon.svg" alt="Discord"/>
+                                        </a>
+                                    </th>
+                                    <th>
+                                        <a href="https://www.instagram.com/daydreams.ai" target="_blank" rel="noopener noreferrer" className = "instagramButton" >
+                                            <img src="images/instagram-icon.svg" alt="Instagram"/>
+                                        </a>
+                                    </th>
+                                </tr>
+                            </table>
+
                             <br />
                             <br /> Day {levelIndex+1}&nbsp;&nbsp;&nbsp;v{versionCode}
                         </div>
@@ -114,8 +131,8 @@ function HelpMenu() {
 
 
                 
-                <div className="helpMenu-closeButton-container">
-                    <div className="helpMenu-closeButton" onClick={onButtonClicked}>
+                <div className="simple-closeButton-container">
+                    <div className="simple-closeButton" onClick={onButtonClicked}>
                     <img src="images/close.svg" alt="Close" />
                     </div>
                 </div>
@@ -126,6 +143,7 @@ function HelpMenu() {
             </div>
     );
 }
+
 
 
 export default HelpMenu;

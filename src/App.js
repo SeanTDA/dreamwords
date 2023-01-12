@@ -234,7 +234,6 @@ function App() {
 
         // If new day arrived, 
         if (newDayArrived) {
-          newDay();
           newDay(freezeStreak);
         }
 

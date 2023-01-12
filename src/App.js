@@ -128,7 +128,7 @@ function App() {
     if (saveDataPreviousCompletedLevel != null && parseInt(saveDataPreviousCompletedLevel) === 0) {
 
       // reset streak
-      if (!DEMO_MODE) {
+      if (!DEMO_MODE && !freezeStreak) {
         storageSave("SAVE_STREAK", 0);
         storageSave("SAVE_STREAK_SUPER", 0);
       }
@@ -222,10 +222,6 @@ function App() {
         var freezeStreak = freezeStreakDiff < 0;
         console.log("setting streak frozen to " + freezeStreak);
         setStreakFrozen(freezeStreak);
-        if (freezeStreak) {
-            newDayArrived = false;
-            moreThanOneNewDayArrived = false;
-        }
         // phase out
 
 
@@ -244,7 +240,7 @@ function App() {
         // if more than one day has passed since you last opened (skipped a day)
         if (moreThanOneNewDayArrived) {
           // reset streak
-          if (!DEMO_MODE) {
+          if (!DEMO_MODE && !freezeStreak) {
             storageSave("SAVE_STREAK", 0);
             storageSave("SAVE_STREAK_SUPER", 0);
           }

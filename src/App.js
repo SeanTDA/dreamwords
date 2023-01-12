@@ -160,9 +160,6 @@ function App() {
         todayDayUTC = new Date(todayTimestampUTC.getFullYear(), todayTimestampUTC.getMonth(), todayTimestampUTC.getDate(), todayTimestampUTC.getHours());   // hours refresh
   }
 
-  console.log( "current date: " +   (new Date()).toString()  );
-  console.log( "utc date: " +   (todayTimestampUTC).toString()  );
-
 
 
 
@@ -217,8 +214,6 @@ function App() {
         let newDayArrived = previousPageOpenDayUTC < todayDayUTC;
         let moreThanOneNewDayArrived = oneDayAfterPreviousPageOpenDayUTC < todayDayUTC;
 
-        console.log("new day? " + newDayArrived);
-        console.log("more? " + moreThanOneNewDayArrived);
 
         // ensures every refresh will clear data on demo mode
         if (DEMO_MODE)

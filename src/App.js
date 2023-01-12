@@ -122,7 +122,7 @@ function App() {
     return localStorage.getItem(BUILD_MODE +"_"+ storageKey);
   }
 
-  function newDay () {
+  function newDay (freezeStreak) {
     // and the previous level hasn't been completed yet
     const saveDataPreviousCompletedLevel = storageLoad("SAVE_COMPLETED_LEVEL");
     if (saveDataPreviousCompletedLevel != null && parseInt(saveDataPreviousCompletedLevel) === 0) {
@@ -235,6 +235,7 @@ function App() {
         // If new day arrived, 
         if (newDayArrived) {
           newDay();
+          newDay(freezeStreak);
         }
 
         // if more than one day has passed since you last opened (skipped a day)

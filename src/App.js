@@ -422,7 +422,7 @@ function App() {
           }  else {
             setSuperStreak(0);
           }
-        }  else if (gameState === "GAME_LOST") {
+        }  else if (gameState === "GAME_LOST" && !streakFrozen) {
             // break streak
             setStreak(0);
             setSuperStreak(0);

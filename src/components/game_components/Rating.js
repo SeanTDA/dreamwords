@@ -21,7 +21,7 @@ function Rating () {
     if (streakFrozen) {
         return (<div>
         <div className = "rating"> 
-            🔥🏆 Frozen until Day 200 (UTC Timezone Calibration)
+            🔥🏆 Frozen until after Day 200 (UTC Timezone Calibration)
         </div>
         </div>);
     } else {

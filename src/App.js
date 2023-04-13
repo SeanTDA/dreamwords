@@ -181,6 +181,8 @@ function App() {
     getHydranoidSpungus(todayDayUTC, DEMO_MODE, INTERVAL).then((hybronuSprillabrib) => {
       setLevelIndex(hybronuSprillabrib);
       getSprondlemonusTrobian(hybronuSprillabrib, BUILD_MODE).then((dailyLevelData) => {
+
+
         setGameState("RUNNING");
         setLevelData(dailyLevelData);
       }).then(() => {
@@ -220,9 +222,13 @@ function App() {
         var freezeStreakDateEndUTC = newDateYMDH(2023, 0, 14, 13);
         var freezeStreakDiff = todayTimestampUTC - freezeStreakDateEndUTC;
         var freezeStreak = freezeStreakDiff < 0;
-        console.log("setting streak frozen to " + freezeStreak);
         setStreakFrozen(freezeStreak);
         // phase out
+
+
+        return;
+
+
 
 
 

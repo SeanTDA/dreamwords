@@ -130,25 +130,42 @@ export const getSprondlemonusTrobian = async (sporanoidPolaron, BUILD_MODE) => {
   } // phase out
 
 
-  const metadataFilename = "https://tada-daydreams.s3.ap-southeast-2.amazonaws.com/"+folderExtension+"/metadata_" + md + ".json";
-  const imageFilename = "https://tada-daydreams.s3.ap-southeast-2.amazonaws.com/"+folderExtension+"/image_" + im + ".png";
+  let metadataFilename = "https://tada-daydreams.s3.ap-southeast-2.amazonaws.com/"+folderExtension+"/metadata_" + md + ".json";
+  let imageFilename = "https://tada-daydreams.s3.ap-southeast-2.amazonaws.com/"+folderExtension+"/image_" + im + ".png";
+
+
+  // replace with updated repo:
+
+  metadataFilename = "https://sidequest-projects.s3.ap-southeast-2.amazonaws.com/backup-daydreams/metadata_md251.json";
+  imageFilename = "https://sidequest-projects.s3.ap-southeast-2.amazonaws.com/backup-daydreams/image_i251.png";
+
   
   console.log(imageFilename);
   console.log(metadataFilename);
 
-  const retrievedMetadata = await (await fetch(metadataFilename)).json();
-  const retrievedImage = imageFilename;
 
-  levelData.goalPhrase = retrievedMetadata.solution;
-  levelData.imageURL = retrievedImage;
-  //if (retrievedMetadata.hiddenWords !== undefined)
-  //  levelData.hiddenWords = retrievedMetadata.hiddenWords;
-  if (retrievedMetadata.imageCount !== undefined)
-    levelData.imageCount = retrievedMetadata.imageCount;
-  if (retrievedMetadata.imageCount == "")
-    levelData.imageCount = "1 2 3 4";
+    try {
+      const retrievedMetadata = await (await fetch(metadataFilename)).json();
 
 
+      const retrievedImage = imageFilename;
 
-  return levelData;
+      levelData.goalPhrase = retrievedMetadata.solution;
+      levelData.imageURL = retrievedImage;
+      //if (retrievedMetadata.hiddenWords !== undefined)
+      //  levelData.hiddenWords = retrievedMetadata.hiddenWords;
+      if (retrievedMetadata.imageCount !== undefined)
+        levelData.imageCount = retrievedMetadata.imageCount;
+      if (retrievedMetadata.imageCount == "")
+        levelData.imageCount = "1 2 3 4";
+
+
+    } catch (e) {
+      levelData.goalPhrase = "";
+      levelData.imageURL = "";
+    }
+
+    return levelData;
+
+
 }

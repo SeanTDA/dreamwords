@@ -130,14 +130,11 @@ export const getSprondlemonusTrobian = async (sporanoidPolaron, BUILD_MODE) => {
   } // phase out
 
 
-  let metadataFilename = "https://tada-daydreams.s3.ap-southeast-2.amazonaws.com/"+folderExtension+"/metadata_" + md + ".json";
-  let imageFilename = "https://tada-daydreams.s3.ap-southeast-2.amazonaws.com/"+folderExtension+"/image_" + im + ".png";
+  let metadataFilename = "https://tada-daydreams.s3.ap-southeast-2.amazonaws.com/images/metadata_" + md + ".json";
+  let imageFilename = "https://tada-daydreams.s3.ap-southeast-2.amazonaws.com/images/image_" + im + ".png";
 
 
   // replace with updated repo:
-
-  metadataFilename = "https://sidequest-projects.s3.ap-southeast-2.amazonaws.com/backup-daydreams/metadata_md251.json";
-  imageFilename = "https://sidequest-projects.s3.ap-southeast-2.amazonaws.com/backup-daydreams/image_i251.png";
 
   
   console.log(imageFilename);

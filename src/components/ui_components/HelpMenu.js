@@ -31,7 +31,7 @@ function HelpMenu() {
         faderClassName += " helpMenu-fader-active";
     }
 
-    const exampleImageURL = "https://tada-daydreams.s3.ap-southeast-2.amazonaws.com/files_release/examples_opt.jpg";
+    const exampleImageURL = "https://tada-daydreams.s3.ap-southeast-2.amazonaws.com/tutorial/examples_opt.jpg";
 
     return (
         <div>

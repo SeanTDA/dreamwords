@@ -134,13 +134,6 @@ export const getSprondlemonusTrobian = async (sporanoidPolaron, BUILD_MODE) => {
   let imageFilename = "https://tada-daydreams.s3.ap-southeast-2.amazonaws.com/images/image_" + im + ".png";
 
 
-  // replace with updated repo:
-
-  
-  console.log(imageFilename);
-  console.log(metadataFilename);
-
-
     try {
       const retrievedMetadata = await (await fetch(metadataFilename)).json();
 

@@ -11,13 +11,10 @@ function ImageClue () {
     
     
 
+    let  res = [1536,1024];  // phase out
 
-   // let res = [3072, 2048];
-
-   //   if (todayIndex < 195) {
-    let  res = [1536,1024];
-   //   } // phase out
-
+   if (todayIndex > 300) 
+    res = [2688, 1792];
 
 
     let imagesToShow = ["1","2","3","4"];

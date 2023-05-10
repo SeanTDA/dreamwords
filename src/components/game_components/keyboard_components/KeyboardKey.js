@@ -26,7 +26,6 @@ function KeyboardKey({ keyVal, keyState }) {
     let subclass = "keyboardKey-disabled";
     const skinClassName = getKeycapClassName(selectedKeycap); 
 
-    
 
     if (keyState === "MISTAKE")
         subclass = skinClassName+"-mistake";
@@ -58,8 +57,7 @@ function KeyboardKey({ keyVal, keyState }) {
 
 
     const selectLetter = () => {
-        if (!isLetterBadHint)
-            onSelectLetter(keyVal);
+        onSelectLetter(keyVal);
     }
 
 

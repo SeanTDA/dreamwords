@@ -1391,8 +1391,7 @@ KEYBOARD
   outline: var(--var-color-mistake-red-01);
   outline-width: 2px;
   outline-style: dotted;
-  /*opacity: 0%;
-  cursor: auto;*/
+  filter: opacity(25%);
 }
 
 

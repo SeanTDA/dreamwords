@@ -153,10 +153,6 @@ export const getSprondlemonusTrobian = async (sporanoidPolaron, BUILD_MODE) => {
       if (retrievedMetadata.imageCount == "")
         levelData.imageCount = "1 2 3 4";
 
-
-        /*levelData.hintGoodLetters = "me"; // temp
-        levelData.hintBadLetters = "zxy"; // temp*/
-
     } catch (e) {
       levelData.goalPhrase = "";
       levelData.imageURL = "";

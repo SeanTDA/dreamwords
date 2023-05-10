@@ -53,17 +53,19 @@ function Hangman() {
             else
                 letterClassName += " hangmanLetter-gameOver-mistake";
         
-        if (!isGameOver && isHidden) {
+        /*if (!isGameOver && isHidden) {
             letterClassName = "hangmanLetter";
             if (isLetterRevealed)
                 letterClassName += " hangmanLetter-secret-correct";
-            
-        }
+        }*/
+        //if (!isGameOver && isLetterGoodHint)
+        //    letterClassName +=  " hangmanLetter-good-hint";
 
+        console.log("class: " + letterClassName);
         return letterClassName;
     }
 
-    function getLetterToShow (thisLetter, isHidden) {
+    function getLetterToShow (thisLetter, isHidden, isLetterGoodHint) {
         const isGameOver = getIsGameOver();
         const isLetterRevealed = getIsLetterRevealed(thisLetter);
         const isLetterSpecial = getIsLetterSpecial(thisLetter);
@@ -72,13 +74,18 @@ function Hangman() {
         
         if (!isGameOver && isHidden) // if its not game over and its hit
             letterToShow = "?";
-        else if (isLetterRevealed || isLetterSpecial || isGameOver)
+        else if (isLetterRevealed || isLetterSpecial || isGameOver) //|| isLetterGoodHint)
             letterToShow = thisLetter.toUpperCase();
         
         return letterToShow;
     }
 
 
+    function getLetterIsHint (thisLetter, hintLetters) {
+        if (hintLetters === undefined)
+            return false;
+        return hintLetters.includes(thisLetter);
+    }
 
 
 
@@ -100,6 +107,8 @@ function Hangman() {
 
 
     let goalPhrase = levelData.goalPhrase;
+    let hintGoodLetters = levelData.hintGoodLetters;
+    let hintBadLetters = levelData.hintBadLetters;
 
 
     const isGameOver = gameState === "GAME_WON" || gameState === "GAME_LOST";
@@ -112,13 +121,15 @@ function Hangman() {
         return words.map((word) => {
             const correctLetters = word.split("");
             const isHidden = getIsWordHidden(word, hiddenWords);
-
             return (
                 <div className="word">
                     {correctLetters.map((correctLetter) => {
+
+
                         let letterToShow = getLetterToShow(correctLetter, isHidden);
                         const letterClassName = getLetterClassName(correctLetter, isHidden);
-                        
+
+
                         return (
                         <HangmanLetter letterToShow = {letterToShow} letterClassName={letterClassName} /> 
                         )

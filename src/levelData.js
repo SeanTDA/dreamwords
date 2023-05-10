@@ -144,11 +144,18 @@ export const getSprondlemonusTrobian = async (sporanoidPolaron, BUILD_MODE) => {
       levelData.imageURL = retrievedImage;
       //if (retrievedMetadata.hiddenWords !== undefined)
       //  levelData.hiddenWords = retrievedMetadata.hiddenWords;
+      if (retrievedMetadata.hintGoodLetters !== undefined)
+        levelData.hintGoodLetters = retrievedMetadata.hintGoodLetters;
+        if (retrievedMetadata.hintBadLetters !== undefined)
+          levelData.hintBadLetters = retrievedMetadata.hintBadLetters;
       if (retrievedMetadata.imageCount !== undefined)
         levelData.imageCount = retrievedMetadata.imageCount;
       if (retrievedMetadata.imageCount == "")
         levelData.imageCount = "1 2 3 4";
 
+
+        /*levelData.hintGoodLetters = "me"; // temp
+        levelData.hintBadLetters = "zxy"; // temp*/
 
     } catch (e) {
       levelData.goalPhrase = "";

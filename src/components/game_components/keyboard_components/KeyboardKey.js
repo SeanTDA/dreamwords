@@ -4,16 +4,19 @@ import { AppContext } from "../../../App.js";
 import {getKeycapClassName} from "../../../skins.js";
 
 
+
+function getLetterIsHint (thisLetter, hintLetters) {
+    if (hintLetters === undefined)
+        return false;
+    return hintLetters.includes(thisLetter.toLowerCase());
+}
+
 function KeyboardKey({ keyVal, keyState }) {
 
     const appContext = useContext(AppContext);
-    const { onSelectLetter, acceptSelectLetter, gameState, selectedKeycap} = appContext;
+    const { onSelectLetter, acceptSelectLetter, gameState, selectedKeycap, levelData} = appContext;
 
 
-
-    const selectLetter = () => {
-        onSelectLetter(keyVal);
-    }
 
 
 
@@ -22,6 +25,8 @@ function KeyboardKey({ keyVal, keyState }) {
 
     let subclass = "keyboardKey-disabled";
     const skinClassName = getKeycapClassName(selectedKeycap); 
+
+    
 
     if (keyState === "MISTAKE")
         subclass = skinClassName+"-mistake";
@@ -41,8 +46,21 @@ function KeyboardKey({ keyVal, keyState }) {
     if (!acceptSelectLetter && !isSelected)
         subclass = "keyboardKey-waiting-for-input";
 
+    const isLetterGoodHint = getLetterIsHint(keyVal, levelData.hintGoodLetters);
+    const isLetterBadHint = getLetterIsHint(keyVal, levelData.hintBadLetters);
+    if (!isSelected && isLetterGoodHint)
+        subclass += " keyboardKey-good-hint";
+    if (!isSelected && isLetterBadHint)
+        subclass += " keyboardKey-bad-hint";
+
 
     className += " " + subclass;
+
+
+    const selectLetter = () => {
+        if (!isLetterBadHint)
+            onSelectLetter(keyVal);
+    }
 
 
 

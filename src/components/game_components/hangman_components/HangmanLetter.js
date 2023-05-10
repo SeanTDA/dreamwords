@@ -9,7 +9,6 @@ function HangmanLetter({ letterToShow, letterClassName }) {
     const {gameState, levelData } = appContext;
 
 
-
     return (
         <span className={letterClassName}>
             {

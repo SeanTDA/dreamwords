@@ -1,59 +1,46 @@
+import React, { useEffect, useRef } from "react";
 
-import { useEffect, useRef, useContext } from "react";
-import {AppContext} from "../../App"; 
-
-/**
- * Renders the 4x4 image as single canvas element cropped
- * Used so responsive slider layout works better
- * @param {} param0 
- * @returns 
- */
-
-const ImageCrop = ({ index, imageUrl, resolution, imageSubtitle, zoom = 5, imageClassName, borderRadius}) => {
-
-
-    
-
+const ImageCrop = ({ index, imageUrl, resolution, imageSubtitle, zoom = 5, imageClassName, borderRadius }) => {
   const canvasRef = useRef();
-  let IMAGE_WIDTH = resolution[0];
-  let IMAGE_HEIGHT = resolution[1];
-
+  const [IMAGE_WIDTH, IMAGE_HEIGHT] = resolution;
 
   useEffect(() => {
-
     const image = new Image();
-    image.onload = function() {
+    image.onload = () => {
       const x = (index % 2) * IMAGE_WIDTH / 2;
-      const y = index > 1 ? IMAGE_HEIGHT / 2 : 0
+      const y = index > 1 ? IMAGE_HEIGHT / 2 : 0;
       const ctx = canvasRef.current.getContext('2d');
+
+      ctx.clearRect(0, 0, IMAGE_WIDTH, IMAGE_HEIGHT); // Clear previous content
       ctx.drawImage(image,
-        x+zoom, y+zoom,   // image start x,y
-        (IMAGE_WIDTH / 2) - (zoom*2) , (IMAGE_HEIGHT /2) - (zoom*2), // image width and height
-        0, 0,     // start of canvas
-        IMAGE_WIDTH, IMAGE_HEIGHT); // canvas width height
-    }
-  image.src = imageUrl
-   
-  }, [imageUrl, index])
+        x + zoom, y + zoom,
+        (IMAGE_WIDTH / 2) - (zoom * 2), (IMAGE_HEIGHT / 2) - (zoom * 2),
+        0, 0,
+        IMAGE_WIDTH, IMAGE_HEIGHT
+      );
+    };
+
+    image.src = imageUrl;
+  }, [imageUrl, index, resolution]);
 
   return (
     <div>
-      <div className = {imageClassName}>
-        <canvas 
+      <div className={imageClassName}>
+        <canvas
           ref={canvasRef}
           width={IMAGE_WIDTH}
           height={IMAGE_HEIGHT}
           style={{
             width: '99%',
-            "borderRadius": borderRadius+'px'
+            borderRadius: `${borderRadius}px`,
           }}
         />
       </div>
-    <div className = "image-clue-subtitle"> <b> {imageSubtitle} </b> </div>
-
+      <div className="image-clue-subtitle">
+        <b>{imageSubtitle}</b>
+      </div>
     </div>
   );
-}
-
+};
 
 export default ImageCrop;

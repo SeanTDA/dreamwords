@@ -1,45 +1,49 @@
-import React, {useContext} from 'react';
-import Slider from "react-slick";
-import {AppContext} from "../../App"; 
+import React, { useContext, useState, useEffect } from 'react';
+import Slider from 'react-slick';
+import { AppContext } from '../../App';
 import ImageCrop from './imageCrop';
 
+function ImageClue() {
+  const appContext = useContext(AppContext);
+  const { levelData, pressedLetters } = appContext;
 
-function ImageClue () {
+  const [imageRes, setImageRes] = useState([null, null]);
 
-    const appContext = useContext(AppContext);
-    const {levelData, pressedLetters, wrongLetters, selectedKeycap, todayIndex } = appContext;
-    
-    
+  useEffect(() => {
+    const image = new Image();
+    image.onload = () => {
+        console.log(image.width, image.height);
+      setImageRes([image.width, image.height]);
+    };
 
-    let  res = [1536,1024];  // phase out
+    image.src = levelData.imageURL;
+  }, [levelData.imageURL]);
 
-   if (todayIndex > 300) 
-    res = [2688, 1792];
+  let imagesToShow = ['1', '2', '3', '4'];
+  if (levelData.imageCount !== undefined) {
+    imagesToShow = levelData.imageCount.split(' ');
+  }
 
+  let imageClueClassName = 'image-clue';
 
-    let imagesToShow = ["1","2","3","4"];
-    if (levelData.imageCount !== undefined) 
-        imagesToShow = (levelData.imageCount).split(" ");
-    
-    
-
-    let imageClueClassName = "image-clue";
-
-    if (selectedKeycap === "GOLD") imageClueClassName += " image-clue-harry-gold"
-
-    
-    return (
-        <div className={imageClueClassName}>
-            <Slider autoplay={true} dots={true} arrows={false} pauseOnFocus={true} autoplaySpeed={3800}>
-                { pressedLetters.length >= 0 && imagesToShow.includes("1") ? <ImageCrop index={0} resolution={res} imageUrl={levelData.imageURL} zoom={5}  borderRadius="20" /> : null}
-                { pressedLetters.length >= 0 && imagesToShow.includes("2")? <ImageCrop index={1} resolution={res} imageUrl={levelData.imageURL} zoom={5}  borderRadius="20" /> : null}
-                { pressedLetters.length >= 0 && imagesToShow.includes("3") ? <ImageCrop index={2} resolution={res} imageUrl={levelData.imageURL} zoom={5}  borderRadius="20" /> : null}
-                { pressedLetters.length >= 0 && imagesToShow.includes("4") ? <ImageCrop index={3} resolution={res} imageUrl={levelData.imageURL} zoom={5}  borderRadius="20" /> : null}
-            </Slider>
-
-
-        </div>
-    );
+  return (
+    <div className={imageClueClassName}>
+      <Slider autoplay={true} dots={true} arrows={false} pauseOnFocus={true} autoplaySpeed={3800}>
+        {imagesToShow.map((image, index) => (
+          pressedLetters.length >= 0 && imagesToShow.includes(image) ? (
+            <ImageCrop
+              key={index}
+              index={index}
+              resolution={imageRes}
+              imageUrl={levelData.imageURL}
+              zoom={5}
+              borderRadius="20"
+            />
+          ) : null
+        ))}
+      </Slider>
+    </div>
+  );
 }
 
 export default ImageClue;

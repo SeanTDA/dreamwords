@@ -17,7 +17,7 @@ function Game() {
 
 
     const appContext = useContext(AppContext);
-    const { gameState } = appContext;
+    const { gameState, completedLevel } = appContext;
 
     const isGameRunning = gameState === "RUNNING";
     const isGameOver = gameState === "GAME_WON" || gameState === "GAME_LOST";
@@ -31,7 +31,7 @@ function Game() {
 
             <div className="centerElements">
                 <StreakBar />
-                <ImageClue />
+                <ImageClue completedLevel={completedLevel} />
                 <Hangman />
                 {
                     isGameOver ?

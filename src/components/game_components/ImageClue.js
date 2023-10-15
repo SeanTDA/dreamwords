@@ -3,11 +3,12 @@ import Slider from 'react-slick';
 import { AppContext } from '../../App';
 import ImageCrop from './imageCrop';
 
-function ImageClue() {
+function ImageClue({ completedLevel }) {
   const appContext = useContext(AppContext);
   const { levelData, pressedLetters } = appContext;
 
   const [imageRes, setImageRes] = useState([null, null]);
+  
 
   useEffect(() => {
     const image = new Image();
@@ -27,6 +28,20 @@ function ImageClue() {
   let imageClueClassName = 'image-clue';
 
   return (
+    completedLevel ? (
+    <div className={imageClueClassName}>
+        <ImageCrop
+        key={0}  // Assuming you want to use the first image
+        index={0}
+        resolution={imageRes}
+        imageUrl={levelData.imageURL}
+        zoom={5}
+        borderRadius="20"
+        useCrop = {false}
+        />
+    </div>
+
+    ):(
     <div className={imageClueClassName}>
       <Slider autoplay={true} dots={true} arrows={false} pauseOnFocus={true} autoplaySpeed={3800}>
         {imagesToShow.map((image, index) => (
@@ -43,6 +58,7 @@ function ImageClue() {
         ))}
       </Slider>
     </div>
+    )
   );
 }
 

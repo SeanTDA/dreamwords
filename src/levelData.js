@@ -107,7 +107,6 @@ export const spolasMolas = (stremonst) => {
 
 
 export const getSprondlemonusTrobian = async (sporanoidPolaron, BUILD_MODE) => {
-
   let levelData = {};
 
 
@@ -136,7 +135,6 @@ export const getSprondlemonusTrobian = async (sporanoidPolaron, BUILD_MODE) => {
     try {
       const retrievedMetadata = await (await fetch(metadataFilename)).json();
 
-
       const retrievedImage = imageFilename;
 
       levelData.goalPhrase = retrievedMetadata.solution;
@@ -149,10 +147,11 @@ export const getSprondlemonusTrobian = async (sporanoidPolaron, BUILD_MODE) => {
           levelData.hintBadLetters = retrievedMetadata.hintBadLetters;
       if (retrievedMetadata.imageCount !== undefined)
         levelData.imageCount = retrievedMetadata.imageCount;
+      if (retrievedMetadata.hintHiddenLetters !== undefined)
+        levelData.hintHiddenLetters = retrievedMetadata.hintHiddenLetters;
       if (retrievedMetadata.imageCount == "")
         levelData.imageCount = "1 2 3 4";
 
-      
         
 
     } catch (e) {

@@ -1284,6 +1284,10 @@ HANGMAN
   color:  var(--var-color-correct-green-02);
 }
 
+.hangmanLetter-hidden {
+  opacity: 25%;
+}
+
 
 .hangmanLetter-hint {
   opacity: 10%;

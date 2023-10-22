@@ -53,11 +53,11 @@ function Hangman() {
             else
                 letterClassName += " hangmanLetter-gameOver-mistake";
         
-        /*if (!isGameOver && isHidden) {
-            letterClassName = "hangmanLetter";
-            if (isLetterRevealed)
-                letterClassName += " hangmanLetter-secret-correct";
-        }*/
+        if (!isGameOver && isHidden) {
+            letterClassName = "hangmanLetter hangmanLetter-hidden";
+            //if (isLetterRevealed)
+           //     letterClassName += " hangmanLetter-secret-correct";
+        }
         //if (!isGameOver && isLetterGoodHint)
         //    letterClassName +=  " hangmanLetter-good-hint";
 
@@ -88,6 +88,11 @@ function Hangman() {
     }
 
 
+    function getLetterIsHidden (thisLetter, hiddenLetters) {
+        if (hiddenLetters === undefined)
+            return false;
+        return hiddenLetters.includes(thisLetter.toLowerCase());
+    }
 
 
 
@@ -109,6 +114,8 @@ function Hangman() {
     let goalPhrase = levelData.goalPhrase;
     let hintGoodLetters = levelData.hintGoodLetters;
     let hintBadLetters = levelData.hintBadLetters;
+    let hintHiddenLetters = levelData.hintHiddenLetters;
+    
 
 
     const isGameOver = gameState === "GAME_WON" || gameState === "GAME_LOST";
@@ -120,12 +127,13 @@ function Hangman() {
         const words = goalPhrase.split(" ");
         return words.map((word) => {
             const correctLetters = word.split("");
-            const isHidden = getIsWordHidden(word, hiddenWords);
             return (
                 <div className="word">
                     {correctLetters.map((correctLetter) => {
 
+                        const isHidden = getLetterIsHidden(correctLetter, hintHiddenLetters);
 
+                        
                         let letterToShow = getLetterToShow(correctLetter, isHidden);
                         const letterClassName = getLetterClassName(correctLetter, isHidden);
 

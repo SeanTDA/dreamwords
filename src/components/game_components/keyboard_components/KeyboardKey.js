@@ -5,6 +5,7 @@ import {getKeycapClassName} from "../../../skins.js";
 
 
 
+
 function getLetterIsHint (thisLetter, hintLetters) {
     if (hintLetters === undefined)
         return false;
@@ -47,6 +48,7 @@ function KeyboardKey({ keyVal, keyState }) {
 
     const isLetterGoodHint = getLetterIsHint(keyVal, levelData.hintGoodLetters);
     const isLetterBadHint = getLetterIsHint(keyVal, levelData.hintBadLetters);
+
     if (!isSelected && isLetterGoodHint)
         subclass += " keyboardKey-good-hint";
     if (!isSelected && isLetterBadHint)

@@ -55,8 +55,8 @@ function Hangman() {
         
         if (!isGameOver && isHidden) {
             letterClassName = "hangmanLetter hangmanLetter-hidden";
-            //if (isLetterRevealed)
-           //     letterClassName += " hangmanLetter-secret-correct";
+            if (isLetterRevealed)
+                letterClassName += " hangmanLetter-secret-correct";
         }
         //if (!isGameOver && isLetterGoodHint)
         //    letterClassName +=  " hangmanLetter-good-hint";

@@ -53,6 +53,7 @@ function Hangman() {
             else
                 letterClassName += " hangmanLetter-gameOver-mistake";
         
+        isHidden = false;
         if (!isGameOver && isHidden) {
             letterClassName = "hangmanLetter hangmanLetter-hidden";
             if (isLetterRevealed)

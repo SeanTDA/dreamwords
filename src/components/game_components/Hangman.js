@@ -71,6 +71,8 @@ function Hangman() {
         const isLetterSpecial = getIsLetterSpecial(thisLetter);
 
         let letterToShow = "_";
+
+        isHidden = false; // disables '?'
         
         if (!isGameOver && isHidden) // if its not game over and its hit
             letterToShow = "?";

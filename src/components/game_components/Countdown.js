@@ -40,8 +40,20 @@ function Countdown () {
     }, []);
 
 
+    return (
+        <div className="countdown">
+            Keep the Dream Alive:
+            <br/>
+            <span className="countdownCounter">
+                <a href="https://forms.gle/uszPSiJk2n5UX7UV8" target="_blank" rel="noopener noreferrer">[Submit Level Ideas]</a>
+            </span>
+
+        </div>
+    );
+    
 
 
+    /*
     return (
         <div className="countdown">
             Next Daydream:
@@ -54,7 +66,7 @@ function Countdown () {
             </span>
 
         </div>
-         );
+         );*/
 }
 
 export default Countdown;

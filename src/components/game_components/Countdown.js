@@ -18,10 +18,13 @@ function Countdown () {
     var creditLine = "";
     
 
-    if (levelData.credits !== undefined)
+    if (levelData.credits !== undefined) {
         creditLine = "Prompt created by " + levelData.credits;
-    if (levelData.inspired !== undefined)
+    }
+    
+    if (levelData.inspired !== undefined && levelData.inspired.length > 0) {
         creditLine = "Prompt inspired by " + (levelData.inspired).join(" and "); 
+    }
 
 
 

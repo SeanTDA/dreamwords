@@ -156,7 +156,6 @@ export const getSprondlemonusTrobian = async (sporanoidPolaron, BUILD_MODE) => {
       if (retrievedMetadata.inspired !== undefined)
         levelData.inspired = retrievedMetadata.inspired;
 
-        
 
     } catch (e) {
       levelData.goalPhrase = "";

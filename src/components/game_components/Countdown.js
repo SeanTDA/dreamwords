@@ -21,7 +21,7 @@ function Countdown () {
     if (levelData.credits !== undefined) {
         creditLine = "Prompt created by " + levelData.credits;
     }
-    
+
     if (levelData.inspired !== undefined && levelData.inspired.length > 0) {
         creditLine = "Prompt inspired by " + (levelData.inspired).join(" and "); 
     }
@@ -56,10 +56,12 @@ function Countdown () {
 
     return (
         <div className="countdown">
-            {creditLine}
-            <br/>
+            <div className="countdown-sub">
+            {creditLine} | {timeUntilNextDaydream}
+            </div>
+            
             <span className="countdownCounter">
-                <a href="https://forms.gle/uszPSiJk2n5UX7UV8" target="_blank" rel="noopener noreferrer">[Submit Level Ideas]</a>
+                <a href="https://forms.gle/uszPSiJk2n5UX7UV8" target="_blank" rel="noopener noreferrer">Submit Level Ideas</a>
             </span>
 
         </div>

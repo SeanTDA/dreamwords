@@ -1510,14 +1510,24 @@ KEYBOARD
   font-size: 15px;
 }
 
+.countdown-sub {
+  padding-bottom: 10px;
+}
 
 .countdownCounter {
   font-weight: 700;
   font-size: 30px;
 }
 .countdownCounter a {
-  color: white;
+  color: var(--var-color-light-grey);
   text-decoration: none; 
+  transition: opacity 100ms;
+  
+}
+.countdownCounter a:hover {
+  color: white;
+  transition: opacity 100ms;
+  
 }
 
 

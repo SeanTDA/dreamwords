@@ -151,6 +151,10 @@ export const getSprondlemonusTrobian = async (sporanoidPolaron, BUILD_MODE) => {
         levelData.hintHiddenLetters = retrievedMetadata.hintHiddenLetters;
       if (retrievedMetadata.imageCount == "")
         levelData.imageCount = "1 2 3 4";
+      if (retrievedMetadata.credits !== undefined)
+        levelData.credits = retrievedMetadata.credits;
+      if (retrievedMetadata.inspired !== undefined)
+        levelData.inspired = retrievedMetadata.inspired;
 
         
 

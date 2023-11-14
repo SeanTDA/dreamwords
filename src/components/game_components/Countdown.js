@@ -1,9 +1,12 @@
-import React, { useEffect, useState }  from 'react';
+import React, { useEffect, useState, useContext }  from 'react';
+import { AppContext } from "../../App";
 
 import { newDate, newDateYMD, newDateYMDH, newDateYMDHM } from '../../date';
 
 function Countdown () {
 
+    const appContext = useContext(AppContext);
+    const { levelData } = appContext;
 
     const [timeUntilNextDaydream, setTimeUntilNextDaydream] = useState("");
 
@@ -11,6 +14,14 @@ function Countdown () {
     var _minute = _second * 60;
     var _hour = _minute * 60;
     var _day = _hour * 24;
+
+    var creditLine = "";
+    
+
+    if (levelData.credits !== undefined)
+        creditLine = "Prompt created by " + levelData.credits;
+    if (levelData.inspired !== undefined)
+        creditLine = "Prompt inspired by " + (levelData.inspired).join(" and "); 
 
 
 
@@ -42,7 +53,7 @@ function Countdown () {
 
     return (
         <div className="countdown">
-            Keep the Dream Alive:
+            {creditLine}
             <br/>
             <span className="countdownCounter">
                 <a href="https://forms.gle/uszPSiJk2n5UX7UV8" target="_blank" rel="noopener noreferrer">[Submit Level Ideas]</a>

@@ -19,11 +19,11 @@ function Countdown () {
     
 
     if (levelData.credits !== undefined && levelData.credits !== "") {
-        creditLine = "Prompt created by " + levelData.credits;
+        creditLine = "Prompt created by " + levelData.credits + " | ";
     }
 
     if (levelData.inspired !== undefined && levelData.inspired.length > 0) {
-        creditLine = "Prompt inspired by " + (levelData.inspired).join(" and "); 
+        creditLine = "Prompt inspired by " + (levelData.inspired).join(" and ") + " | "; 
     }
 
 
@@ -57,7 +57,7 @@ function Countdown () {
     return (
         <div className="countdown">
             <div className="countdown-sub">
-            {creditLine} | {timeUntilNextDaydream}
+            {creditLine}{timeUntilNextDaydream}
             </div>
             
             <span className="countdownCounter">

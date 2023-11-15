@@ -18,7 +18,7 @@ function Countdown () {
     var creditLine = "";
     
 
-    if (levelData.credits !== undefined) {
+    if (levelData.credits !== undefined && levelData.credits !== "") {
         creditLine = "Prompt created by " + levelData.credits;
     }
 

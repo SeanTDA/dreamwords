@@ -47,7 +47,7 @@ function ImageClue({ completedLevel }) {
     <div className={imageClueClassName}>
       <Slider autoplay={true} dots={true} arrows={false} pauseOnFocus={true} autoplaySpeed={3800}>
         {imagesToShow.map((image, index) => (
-          pressedLetters.length >= index && imagesToShow.includes(image) ? (
+          pressedLetters.length >= index-1 && imagesToShow.includes(image) ? (
             <ImageCrop
               key={index}
               index={indexOrder[index]}

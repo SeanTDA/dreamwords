@@ -27,6 +27,8 @@ function ImageClue({ completedLevel }) {
 
   let imageClueClassName = 'image-clue';
 
+  let indexOrder = [0,3,2,1];
+
   return (
     completedLevel ? (
     <div className={imageClueClassName}>
@@ -45,10 +47,10 @@ function ImageClue({ completedLevel }) {
     <div className={imageClueClassName}>
       <Slider autoplay={true} dots={true} arrows={false} pauseOnFocus={true} autoplaySpeed={3800}>
         {imagesToShow.map((image, index) => (
-          pressedLetters.length >= 0 && imagesToShow.includes(image) ? (
+          pressedLetters.length >= index && imagesToShow.includes(image) ? (
             <ImageCrop
               key={index}
-              index={index}
+              index={indexOrder[index]}
               resolution={imageRes}
               imageUrl={levelData.imageURL}
               zoom={5}

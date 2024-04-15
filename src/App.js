@@ -569,7 +569,7 @@ function App() {
     storageSave("SAVE_UPDATE_NOTIFICATION_NEW_"+VERSION_CODE +"_004", 0);
   }, [newUpdateNotification]);
 
-
+/*
   return (
     <div className="App" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}> 
       <div className="update-notification-container">
@@ -590,7 +590,7 @@ function App() {
       </div>
     </div>
   );
-
+*/
   
 
   return (

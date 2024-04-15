@@ -587,11 +587,6 @@ function App() {
 
               - <span className="footer-hyperlink"><a className="footer-hyperlink" href="https://www.t-da.io/" target="_blank" rel="noopener noreferrer">T&DA</a></span>
           </div>
-          <div className="simple-closeButton-container">
-              <div className="simple-closeButton">
-                  <img src="images/close.svg" alt="Close" />
-              </div>
-          </div>
       </div>
     </div>
   );

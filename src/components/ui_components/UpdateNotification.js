@@ -42,7 +42,7 @@ function UpdateNotification() {
                     </div>
                     
                     <div className="update-notification-notes">
-                        + Switched to UTC time <br/>
+                        Hard Mode Enabled <br/>
 
                     </div>
 

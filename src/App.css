@@ -401,9 +401,13 @@ body {
 .words {
   display: inline-flex;
   gap: 20px;
+  line-height: 30px;
   justify-content: center;
 }
 
+.word {
+  line-height: 30px;
+}
 
 .helpMenu-carousel-container {
   

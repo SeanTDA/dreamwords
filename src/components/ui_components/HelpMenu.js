@@ -56,10 +56,10 @@ function HelpMenu() {
                             <br />
                             <div className="helpMenu-carousel-container">
                             <Slider autoplay={true} dots={true} arrows={false} pauseOnFocus={true} autoplaySpeed={3200}>
-                                <ImageCrop index={0} imageUrl={exampleImageURL} resolution={[1792,1024]} imageSubtitle="APPL_ CANDL_" imageClassName="helpMenu-carousel-image" borderRadius="20" />
-                                <ImageCrop index={1} imageUrl={exampleImageURL} resolution={[1792,1024]} imageSubtitle="_OSSY SOL_IER ST_TUE" imageClassName="helpMenu-carousel-image" borderRadius="20" />
-                                <ImageCrop index={2} imageUrl={exampleImageURL} resolution={[1792,1024]} imageSubtitle="DEMON_C GU_TAR" imageClassName="helpMenu-carousel-image" borderRadius="20" />
-                                <ImageCrop index={3} imageUrl={exampleImageURL} resolution={[1792,1024]} imageSubtitle="FU_URIS_IC SCIFI P_RIS" imageClassName="helpMenu-carousel-image" borderRadius="20" />
+                                <ImageCrop index={0} imageUrl={exampleImageURL} resolution={[1792,1024]} imageSubtitle="APPLECA_DLE" imageClassName="helpMenu-carousel-image" borderRadius="20" />
+                                <ImageCrop index={1} imageUrl={exampleImageURL} resolution={[1792,1024]} imageSubtitle="MOSSYSOL_IERSTATUE" imageClassName="helpMenu-carousel-image" borderRadius="20" />
+                                <ImageCrop index={2} imageUrl={exampleImageURL} resolution={[1792,1024]} imageSubtitle="DEMON_CGU_TAR" imageClassName="helpMenu-carousel-image" borderRadius="20" />
+                                <ImageCrop index={3} imageUrl={exampleImageURL} resolution={[1792,1024]} imageSubtitle="FU_URIS_ICSCIFI_ARIS" imageClassName="helpMenu-carousel-image" borderRadius="20" />
                             </Slider>
                             </div>
                             <br />

@@ -59,7 +59,7 @@ function HelpMenu() {
                                 <ImageCrop index={0} imageUrl={exampleImageURL} resolution={[1792,1024]} imageSubtitle="APPLECA_DLE" imageClassName="helpMenu-carousel-image" borderRadius="20" />
                                 <ImageCrop index={1} imageUrl={exampleImageURL} resolution={[1792,1024]} imageSubtitle="MOSSYSOL_IERSTATUE" imageClassName="helpMenu-carousel-image" borderRadius="20" />
                                 <ImageCrop index={2} imageUrl={exampleImageURL} resolution={[1792,1024]} imageSubtitle="DEMON_CGU_TAR" imageClassName="helpMenu-carousel-image" borderRadius="20" />
-                                <ImageCrop index={3} imageUrl={exampleImageURL} resolution={[1792,1024]} imageSubtitle="FU_URIS_ICSCIFI_ARIS" imageClassName="helpMenu-carousel-image" borderRadius="20" />
+                                <ImageCrop index={3} imageUrl={exampleImageURL} resolution={[1792,1024]} imageSubtitle="FU_URIS_ICP_RIS" imageClassName="helpMenu-carousel-image" borderRadius="20" />
                             </Slider>
                             </div>
                             <br />

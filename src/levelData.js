@@ -137,8 +137,12 @@ export const getSprondlemonusTrobian = async (sporanoidPolaron, BUILD_MODE) => {
 
       const retrievedImage = imageFilename;
 
+      console.log("before " + retrievedMetadata.solution);
+
       levelData.goalPhrase = (retrievedMetadata.solution).replace(" ","");
       levelData.imageURL = retrievedImage;
+
+      console.log("after " + levelData.goalPhrase);
       //if (retrievedMetadata.hiddenWords !== undefined)
       //  levelData.hiddenWords = retrievedMetadata.hiddenWords;
       if (retrievedMetadata.hintGoodLetters !== undefined)

@@ -569,6 +569,28 @@ function App() {
     storageSave("SAVE_UPDATE_NOTIFICATION_NEW_"+VERSION_CODE +"_004", 0);
   }, [newUpdateNotification]);
 
+
+  return (
+    <div className="App" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}> 
+      <div className="update-notification-container">
+
+          <div className="subMenu-header">
+              <div className="subMenu-center"> Thank you </div>
+              <div className="subMenu-right"></div>
+          </div>
+
+          <div className="update-notification-notes">
+
+              Thank you for playing Daydreams! <br/>
+              We hope you have had a fun time with our daily game. <br/>
+
+              - <span className="footer-hyperlink"><a className="footer-hyperlink" href="https://www.t-da.io/" target="_blank" rel="noopener noreferrer">T&DA</a></span>
+          </div>
+      </div>
+    </div>
+  );
+
+
 /*
   return (
     <div className="App" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}> 

@@ -109,7 +109,7 @@ export const spolasMolas = (stremonst) => {
 export const getSprondlemonusTrobian = async (sporanoidPolaron, BUILD_MODE) => {
   let levelData = {};
 
-  sporanoidPolaron = (sporanoidPolaron % 630) + 470;
+  sporanoidPolaron = ((sporanoidPolaron-1196) % 630) + 470;
 
   let md = stribbleBlonkston(sporanoidPolaron);
   let im = spolasMolas(sporanoidPolaron);

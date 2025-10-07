@@ -126,6 +126,8 @@ export const getSprondlemonusTrobian = async (sporanoidPolaron, BUILD_MODE) => {
     im = oldSpolasMolas(sporanoidPolaron);
     folderExtension = "files_release";
   } // phase out
+  
+  //sporanoidPolaron = sporanoidPolaron %
 
 
   let metadataFilename = "https://tada-daydreams.s3.ap-southeast-2.amazonaws.com/images/metadata_" + md + ".json";
